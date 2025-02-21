@@ -21,9 +21,17 @@ function App() {
   }
 
   useEffect(()=>{
-    if (!('ai' in self && 'summarizer' in self.ai && 'translator' in self.ai && 'languageDetector' in self.ai)) {
-      setAIReady(false)
+    async function testAI() {
+      const translator = await self.ai.translator.capabilities();
+      const summarizer = await ai.summarizer.capabilities()
+      const detector = await self.ai.languageDetector.capabilities()
+
+      if (translator.available !== 'readily' || summarizer.available !== 'readily' || detector.available !== 'readily'){
+        console.log('ai unavailable')
+        setAIReady(false)
+      }
     }
+    testAI()
   }, [])
 
   return (
