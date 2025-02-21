@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+*:disabled{
+  cursor: not-allowed;
+}
+
 textarea::-webkit-scrollbar, .chat-area::-webkit-scrollbar{
   width: 0px;
 }
@@ -9,4 +13,9 @@ input[type="radio"]{
 }
 label:has(input[type="radio"]:checked){
   background-color: rgba(255, 255, 255, 0.8);
+}
+label:has(input[type="radio"]:disabled){
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.5;
+  cursor: not-allowed;
 }
